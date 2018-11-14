@@ -1,0 +1,1 @@
+import { Page } from './js/Page';

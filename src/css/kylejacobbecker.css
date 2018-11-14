@@ -1,0 +1,118 @@
+/* Universal */
+
+* {
+  box-sizing: border-box;
+
+  font-family: Verdana, sans-serif;
+}
+
+/* Cross Element */
+
+.width {
+  width: 75%;
+}
+
+/* HTML, Body and Container Div */
+
+html, body, #container {
+  height: 100%;
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  background-color: hsl(0, 0%, 80%);
+}
+
+/* Header */
+
+header {
+  height: 40px;
+  width: 100%;
+
+  background-color: hsl(0, 0%, 0%);
+}
+
+header ul {
+  height: 100%;
+
+  border-left: 1px solid hsl(0, 0%, 100%);
+  margin: auto;
+  padding: 0;
+
+  list-style-type: none;
+}
+
+header ul li {
+  height: 100%;
+  width: 50%;
+
+  border-right: 1px solid hsl(0, 0%, 100%);
+
+  float: left;
+}
+
+.tab {
+  padding: 10px 0px;
+
+  display: block;
+
+  font-size: 20px;
+  line-height: 1.0;
+  text-align: center;
+  text-decoration: none;
+
+  user-select: none;
+}
+
+.active {
+  color: hsl(0, 0%, 100%);
+}
+
+.active:hover {
+  background-color: hsl(0, 0%, 50%);
+  cursor: pointer;
+}
+
+.inactive {
+  background-color: hsl(0, 0%, 100%);
+  color: hsl(0, 0%, 0%);
+}
+
+/* Main */
+
+main {
+  height: calc(100% - 40px);
+
+  border: 1px solid hsl(0, 0%, 0%);
+  border-width: 0px 1px 0px 1px;
+  margin: auto;
+
+  background-color: hsl(0, 0%, 90%);
+}
+
+/* Content */
+
+.content {
+  height: 100%;
+  width: 67%;
+
+  float: left;
+}
+
+/* Sidebar */
+
+.sidebar {
+  height: 100%;
+  width: 33%;
+
+  border-left: 1px solid hsl(0, 0%, 0%);
+
+  display: inline-block;
+}
+
+/* Links */
+
+a {
+  -webkit-user-drag: none;
+}
