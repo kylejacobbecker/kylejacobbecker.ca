@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { classes } from './classes';
+import { classes } from './constants';
 
 export class Sidebar extends React.Component {
   constructor(props) {

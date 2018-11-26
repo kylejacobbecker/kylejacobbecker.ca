@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import { Content } from './Content';
 import { Sidebar } from './Sidebar';
 import { Tab } from './Tab';
-import { classes } from './classes';
+import { classes } from './constants';
 
 export class Page extends React.Component {
   constructor(props) {

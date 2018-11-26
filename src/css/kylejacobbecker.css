@@ -30,13 +30,13 @@ header {
   height: 40px;
   width: 100%;
 
-  background-color: hsl(0, 0%, 0%);
+  background-color: black;
 }
 
 header ul {
   height: 100%;
 
-  border-left: 1px solid hsl(0, 0%, 100%);
+  border-left: 1px solid white;
   margin: auto;
   padding: 0;
 
@@ -47,7 +47,7 @@ header ul li {
   height: 100%;
   width: 50%;
 
-  border-right: 1px solid hsl(0, 0%, 100%);
+  border-right: 1px solid white;
 
   float: left;
 }
@@ -66,7 +66,7 @@ header ul li {
 }
 
 .active {
-  color: hsl(0, 0%, 100%);
+  color: white;
 }
 
 .active:hover {
@@ -75,7 +75,7 @@ header ul li {
 }
 
 .inactive {
-  background-color: hsl(0, 0%, 100%);
+  background-color: white;
   color: hsl(0, 0%, 0%);
 }
 
@@ -84,7 +84,7 @@ header ul li {
 main {
   height: calc(100% - 40px);
 
-  border: 1px solid hsl(0, 0%, 0%);
+  border: 1px solid black;
   border-width: 0px 1px 0px 1px;
   margin: auto;
 
@@ -106,7 +106,7 @@ main {
   height: 100%;
   width: 33%;
 
-  border-left: 1px solid hsl(0, 0%, 0%);
+  border-left: 1px solid black;
 
   display: inline-block;
 }

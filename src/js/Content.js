@@ -1,11 +1,16 @@
 'use strict';
 
 import React from 'react';
-import { classes } from './classes';
+import { Board } from './Board';
+import { classes, colours } from './constants';
 
 export class Content extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      colour: colours.white
+    };
   }
 
   render() {
@@ -18,7 +23,7 @@ export class Content extends React.Component {
     } else {
       return(
         <div className={classes.content}>
-          <span>This is chess.</span>
+          <Board colour={this.state.colour} />
         </div>
       );
     }
