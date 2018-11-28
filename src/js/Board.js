@@ -2,37 +2,47 @@
 
 import React from 'react';
 import { Cell } from './Cell';
-import { classes, colours, pieces, statuses } from './constants';
+import { classes, colours, difficulties, pieces, statuses } from './constants';
+import { Difficulty0 } from './Difficulty0';
 import { MoveHelper } from './MoveHelper';
 
 export class Board extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      board: [['WR','WN','WB','WQ','WK','WB','WN','WR'],
-              ['WP','WP','WP','WP','WP','WP','WP','WP'],
-              ['','','','','','','',''],
-              ['','','','','','','',''],
-              ['','','','','','','',''],
-              ['','','','','','','',''],
-              ['BP','BP','BP','BP','BP','BP','BP','BP'],
-              ['BR','BN','BB','BQ','BK','BB','BN','BR']],
-      status: [['','','','','','','',''],
-               ['','','','','','','',''],
-               ['','','','','','','',''],
-               ['','','','','','','',''],
-               ['','','','','','','',''],
-               ['','','','','','','',''],
-               ['','','','','','','',''],
-               ['','','','','','','','']],
-      moveHelper: new MoveHelper()
-    };
+
+    const boardD = [['WR', 'WN', 'WB', 'WQ', 'WK', 'WB', 'WN', 'WR'],
+                    ['WP', 'WP', 'WP', 'WP', 'WP', 'WP', 'WP', 'WP'],
+                    ['', '', '', '', '', '', '', ''],
+                    ['', '', '', '', '', '', '', ''],
+                    ['', '', '', '', '', '', '', ''],
+                    ['', '', '', '', '', '', '', ''],
+                    ['BP', 'BP', 'BP', 'BP', 'BP', 'BP', 'BP', 'BP'],
+                    ['BR', 'BN', 'BB', 'BQ', 'BK', 'BB', 'BN', 'BR']];
+    const statusD = [['', '', '', '', '', '', '', ''],
+                     ['', '', '', '', '', '', '', ''],
+                     ['', '', '', '', '', '', '', ''],
+                     ['', '', '', '', '', '', '', ''],
+                     ['', '', '', '', '', '', '', ''],
+                     ['', '', '', '', '', '', '', ''],
+                     ['', '', '', '', '', '', '', ''],
+                     ['', '', '', '', '', '', '', '']];
+    const moveHelperD = new MoveHelper();
+
+    if (props.difficulty === difficulties.d0) {
+      this.state = {
+        board:      boardD,
+        status:     statusD,
+        moveHelper: moveHelperD,
+        difficulty: new Difficulty0(props.opponent, moveHelperD),
+        turn:       colours.white
+      };
+    }
     this.handleClick = this.handleClick.bind(this);
   }
 
   render() {
     if (this.props.colour === colours.white) {
-      return(
+      return (
         <table className={classes.board}>
           <tr>
             <td className={classes.coordinateY}>8</td>
@@ -139,7 +149,7 @@ export class Board extends React.Component {
   }
 
   handleClick(row, col) {
-    if (this.state.board[row][col].substr(0, 1) === this.props.colour) {
+    if ((this.state.turn === this.props.colour) && (this.state.board[row][col].substr(0, 1) === this.props.colour)) {
       let newStatus = this.state.status;
       let moves = this.state.moveHelper.findMoves(this.state.board, row, col);
 
@@ -160,7 +170,9 @@ export class Board extends React.Component {
       this.setState({
         board:      this.state.board,
         status:     newStatus,
-        moveHelper: this.state.moveHelper
+        moveHelper: this.state.moveHelper,
+        difficulty: this.state.difficulty,
+        turn:       this.props.colour
       });
     } else if (this.state.status[row][col] === statuses.valid) {
       let newBoard = this.state.board;
@@ -184,7 +196,21 @@ export class Board extends React.Component {
       this.setState({
         board:      newBoard,
         status:     newStatus,
-        moveHelper: this.state.moveHelper
+        moveHelper: this.state.moveHelper,
+        difficulty: this.state.difficulty,
+        turn      : this.props.opponent
+      });
+
+      const opponentMove = this.state.difficulty.makeMove(this.state.board);
+      newBoard[opponentMove[1][0]][opponentMove[1][1]] = newBoard[opponentMove[0][0]][opponentMove[0][1]];
+      newBoard[opponentMove[0][0]][opponentMove[0][1]] = pieces.none;
+
+      this.setState({
+        board:      newBoard,
+        status:     newStatus,
+        moveHelper: this.state.moveHelper,
+        difficulty: this.state.difficulty,
+        turn      : this.props.colour
       });
     }
   }

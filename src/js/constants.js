@@ -26,6 +26,13 @@ export const colours = {
   none:  ''
 };
 
+export const difficulties = {
+  d0: 'difficulty0',
+  d1: 'difficulty1',
+  d2: 'difficulty2',
+  d3: 'difficulty3'
+};
+
 export const pieces = {
   pawn:   'P',
   rook:   'R',

@@ -2,14 +2,16 @@
 
 import React from 'react';
 import { Board } from './Board';
-import { classes, colours } from './constants';
+import { classes, colours, difficulties } from './constants';
 
 export class Content extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      colour: colours.white
+      colour:     colours.white,
+      opponent:   colours.black,
+      difficulty: difficulties.d0
     };
   }
 
@@ -23,7 +25,7 @@ export class Content extends React.Component {
     } else {
       return(
         <div className={classes.content}>
-          <Board colour={this.state.colour} />
+          <Board colour={this.state.colour} opponent={this.state.opponent} difficulty={this.state.difficulty} />
         </div>
       );
     }
